@@ -12,7 +12,7 @@
 		7A2446D31CA7220E00924A28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A2446D11CA7220E00924A28 /* Main.storyboard */; };
 		7A2446D51CA7220E00924A28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A2446D41CA7220E00924A28 /* Assets.xcassets */; };
 		7A2446D81CA7220E00924A28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A2446D61CA7220E00924A28 /* LaunchScreen.storyboard */; };
-		7A2446E11CA722C400924A28 /* ImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2446E01CA722C400924A28 /* ImportData.swift */; };
+		7A2446E11CA722C400924A28 /* Vocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2446E01CA722C400924A28 /* Vocabulary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +23,7 @@
 		7A2446D41CA7220E00924A28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A2446D71CA7220E00924A28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A2446D91CA7220E00924A28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7A2446E01CA722C400924A28 /* ImportData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportData.swift; sourceTree = "<group>"; };
+		7A2446E01CA722C400924A28 /* Vocabulary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +78,7 @@
 		7A2446E21CA722D100924A28 /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				7A2446E01CA722C400924A28 /* ImportData.swift */,
+				7A2446E01CA722C400924A28 /* Vocabulary.swift */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -155,7 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A2446D01CA7220E00924A28 /* ViewController.swift in Sources */,
-				7A2446E11CA722C400924A28 /* ImportData.swift in Sources */,
+				7A2446E11CA722C400924A28 /* Vocabulary.swift in Sources */,
 				7A2446CE1CA7220E00924A28 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +306,7 @@
 				7A2446DE1CA7220E00924A28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

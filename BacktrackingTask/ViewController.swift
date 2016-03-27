@@ -13,7 +13,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        importData()
+        let voc = Vocabulary()
+        print(voc.words!.description)
 
     }
 
