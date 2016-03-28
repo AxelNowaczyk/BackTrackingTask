@@ -31,7 +31,7 @@ class Vocabulary: CustomStringConvertible {
             for i in devideOnRows{
                 let divOnCol = i.characters.split{ $0 == " " }.map(String.init)
                 if divOnCol[3] == "n" || divOnCol[3] == "adv" || divOnCol[3] == "a" || divOnCol[3] == "v"{
-                    words!.append(Word(word: divOnCol[2],occ: Int(divOnCol[1])!,kind: Kind.getKind(divOnCol[3])!))
+                    words!.append(Word(word: divOnCol[2],kind: Kind.getKind(divOnCol[3])!))
                 }
             }
         } catch let error as NSError {
@@ -42,7 +42,7 @@ class Vocabulary: CustomStringConvertible {
         var returnString = ""
         if let wordsUW = words{
             for word in wordsUW{
-                returnString+=word.description+"\n"
+                returnString+=word.description
             }
         }
         return returnString
@@ -50,16 +50,44 @@ class Vocabulary: CustomStringConvertible {
 }
 class Word: CustomStringConvertible {
     let word: String
-    let occ: Int
     let kind: Kind
     
-    init(word: String, occ: Int, kind:Kind){
+    var score: Int{
+        var sum = 0
+        for char in word.characters{
+            sum += getScoreOfLetter(char) ?? 0
+        }
+        return sum
+    }
+    private func getScoreOfLetter(letter: Character) -> Int?{
+        /*
+            Score from scrabble
+         */
+        switch letter {
+        case "q","z":
+            return 10
+        case "j","x":
+            return 8
+        case "k":
+            return 5
+        case "f","h","v","w","y":
+            return 4
+        case "b","c","m","p":
+            return 3
+        case "d","g":
+            return 2
+        case "e","a","i","o","n","r","t","l","s","u":
+            return 1
+        default:
+            return nil
+        }
+    }
+    init(word: String, kind:Kind){
         self.word = word
-        self.occ = occ
         self.kind = kind
     }
     var description: String{
-        return "\(word) \(occ) \(kind)"
+        return "\(word) \(kind) \(score) \n"
     }
 }
 enum Kind: String {

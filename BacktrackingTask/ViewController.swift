@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    // user defines progrm parameters size of the board(n x m), number of words to be used
+    // present most interesting results
 
     override func viewDidLoad() {
         super.viewDidLoad()
