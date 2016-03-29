@@ -158,12 +158,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="wEK-ka-ADs" appends="YES" id="IYI-t9-7ft"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="gameView" destination="rbM-wX-ivH" id="zaM-qq-gca"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z4J-rY-g3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="wEK-ka-ADs">
+                    <connections>
+                        <action selector="tapGesture:" destination="dCq-ph-0qF" id="zn2-2A-Bv5"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-10" y="-211"/>
         </scene>

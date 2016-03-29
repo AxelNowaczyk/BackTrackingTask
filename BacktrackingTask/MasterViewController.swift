@@ -17,6 +17,7 @@ class MasterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController!.navigationBar.hidden = true
         
         playWithItButton.backgroundColor    = UIColor.greenColor()
         playWithItButton.layer.cornerRadius = 10
