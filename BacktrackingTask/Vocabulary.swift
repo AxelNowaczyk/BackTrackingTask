@@ -1,5 +1,5 @@
 //
-//  ImportData.swift
+//  Vocabulary.swift
 //  BacktrackingTask
 //
 //  Created by Axel Nowaczyk on 26.03.2016.
@@ -10,11 +10,16 @@ import Foundation
 
 
 class Vocabulary: CustomStringConvertible {
-    var words: [Word]?
+    /*
+        words - dictionary that have the length of the word as first part and
+                array of words as the second (the array is ordered with the use of
+                score of the words)
+     */
+    var words: [Int:[Word]]?
     
     init(){
         if words == nil{
-            words = [Word]()
+            words = [Int:[Word]]()
             importData()
         }
     }
@@ -30,10 +35,20 @@ class Vocabulary: CustomStringConvertible {
             let devideOnRows = HTMLString.characters.split{$0 == "\n"}.map(String.init)
             for i in devideOnRows{
                 let divOnCol = i.characters.split{ $0 == " " }.map(String.init)
-                if divOnCol[3] == "n" || divOnCol[3] == "adv" || divOnCol[3] == "a" || divOnCol[3] == "v"{
-                    words!.append(Word(word: divOnCol[2],kind: Kind.getKind(divOnCol[3])!))
+                
+                let kind = Kind.getKind(divOnCol[3])
+                let word = divOnCol[2]
+                if let wantedKind = kind{
+                    if words![word.characters.count] == nil{
+                        words![word.characters.count] = [Word]()
+                    }
+                    words![word.characters.count]!.append(Word(word: word,kind: wantedKind))
                 }
             }
+            for (len,_) in words!{
+                words![len]?.sortInPlace()
+            }
+
         } catch let error as NSError {
             print("Error: \(error)")
         }
@@ -41,14 +56,18 @@ class Vocabulary: CustomStringConvertible {
     var description: String{
         var returnString = ""
         if let wordsUW = words{
-            for word in wordsUW{
-                returnString+=word.description
+            for (length,words) in wordsUW{
+                returnString+="\(length)\n"
+                for word in words{
+                    returnString+="\(word), "
+                }
+
             }
         }
         return returnString
     }
 }
-class Word: CustomStringConvertible {
+class Word: CustomStringConvertible, Comparable {
     let word: String
     let kind: Kind
     
@@ -87,8 +106,16 @@ class Word: CustomStringConvertible {
         self.kind = kind
     }
     var description: String{
-        return "\(word) \(kind) \(score) \n"
+        return "\(word) \(score) \(kind) \n"
     }
+}
+/// the best are at the beggining
+func < (lhs: Word, rhs: Word) -> Bool {
+    return lhs.score > rhs.score
+}
+
+func == (lhs: Word, rhs: Word) -> Bool {
+    return lhs.score == rhs.score
 }
 enum Kind: String {
     case ADV
@@ -105,7 +132,6 @@ enum Kind: String {
             return Kind.N.rawValue.lowercaseString
         case V:
             return Kind.V.rawValue.lowercaseString
-
         }
     }
     static func getKind(string: String) -> Kind?{

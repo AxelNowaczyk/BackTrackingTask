@@ -23,6 +23,8 @@ class DetailViewController: UIViewController {
 
     @IBOutlet var gameView: UIView!
     
+    let voc = Vocabulary()
+    
     static let vocabulary = Vocabulary()// dis from main queue
     var cells = [UIView]()
     
@@ -33,7 +35,7 @@ class DetailViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-
+        print(voc.words!.description)
         createCells()
     }
     @IBAction func tapGesture(sender: AnyObject) {
@@ -46,6 +48,7 @@ class DetailViewController: UIViewController {
                 
                 let cellView = UIView(frame: frame)
                 cellView.backgroundColor = UIColor.randomColor
+//                cellView.
                 
                 gameView.addSubview(cellView)
                 cells.append(cellView)
