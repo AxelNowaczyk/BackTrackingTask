@@ -25,7 +25,7 @@ class DetailViewController: UIViewController {
     
     let voc = Vocabulary()
     
-    static let vocabulary = Vocabulary()// dis from main queue
+    static let vocabulary = Vocabulary()// add activity ind in time of init
     var cells = [UIView]()
     
     var cellSize: CGSize{
@@ -35,7 +35,8 @@ class DetailViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        print(voc.words!.description)
+//        print(voc.words!.description)
+ print(voc.wordSizes)
         createCells()
     }
     @IBAction func tapGesture(sender: AnyObject) {

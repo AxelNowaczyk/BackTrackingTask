@@ -17,11 +17,54 @@ class Vocabulary: CustomStringConvertible {
      */
     var words: [Int:[Word]]?
     
+    /*
+        The whole algorithm will run on wordSizes (speedup)
+     */
+    var wordSizes: [(Int,Int)]?
     init(){
         if words == nil{
             words = [Int:[Word]]()
             importData()
+            updateWordSizes()
         }
+    }
+    func getFittestWord(length size:Int) -> Word?{
+        return words![size]?[0]
+    }
+    func getNextWordOfTheSameLength(word word:Word) -> Word?{
+        let wordLength = word.word.characters.count
+        let numOfWordsOfTheSameLength = words![wordLength]!.count
+        /*
+            If this word is last return nil
+         */
+        for i in 0..<(numOfWordsOfTheSameLength-1){
+            if words![wordLength]![i].word == word.word{
+                return words![wordLength]![i+1]
+            }
+        }
+        return nil
+    }
+    func getNextWord(this word:Word) -> Word?{
+        if let next = getNextWordOfTheSameLength(word: word){
+            return next
+        } else if let nextSizeExist = getNextWordSize(word.word.characters.count){
+            return words![nextSizeExist]![0]
+        }
+        return nil
+    }
+    private func getNextWordSize(size: Int) -> Int?{
+        for i in 0..<(wordSizes!.count-1){
+            if wordSizes![i].0 == size{
+                return wordSizes![i+1].0
+            }
+        }
+        return nil
+    }
+    /*
+        Longest/fitest word
+     */
+    var getFirst: Word?{
+        return words![wordSizes![0].0]![0]
     }
     private func importData(){
         let URLString = "https://www.kilgarriff.co.uk/BNClists/lemma.al"
@@ -51,6 +94,15 @@ class Vocabulary: CustomStringConvertible {
 
         } catch let error as NSError {
             print("Error: \(error)")
+        }
+    }
+    private func updateWordSizes(){
+        if wordSizes == nil{
+            wordSizes = [(Int,Int)]()
+            for i in words!{
+                wordSizes!.append((i.0,i.1.count))
+            }
+            wordSizes!.sortInPlace({ $0.0 > $1.0 })
         }
     }
     var description: String{

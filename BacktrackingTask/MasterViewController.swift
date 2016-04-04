@@ -30,7 +30,7 @@ class MasterViewController: UIViewController {
         let newWidht            = Int(widhtTextField.text!) ?? Data.widthDefault
         let newNumberOfWords    = Int(numberOfWordsTextField.text!) ?? Data.numberOfWordsDefault
         
-//        check range
+//        check range not needed just recomended range in which this app looks the best
         
         Data.height         = newHeight
         Data.width          = newWidht
