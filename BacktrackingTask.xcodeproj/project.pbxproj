@@ -12,7 +12,7 @@
 		7A2446D51CA7220E00924A28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A2446D41CA7220E00924A28 /* Assets.xcassets */; };
 		7A2446D81CA7220E00924A28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A2446D61CA7220E00924A28 /* LaunchScreen.storyboard */; };
 		7A2446E11CA722C400924A28 /* Vocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2446E01CA722C400924A28 /* Vocabulary.swift */; };
-		7A4798BE1CB285D100373314 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4798BD1CB285D100373314 /* Game.swift */; };
+		7A4798BE1CB285D100373314 /* Crossword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4798BD1CB285D100373314 /* Crossword.swift */; };
 		7A9DACA81CA97592006B9FB7 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9DACA71CA97592006B9FB7 /* MasterViewController.swift */; };
 		7A9DACAB1CA97A9E006B9FB7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9DACAA1CA97A9E006B9FB7 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -25,7 +25,7 @@
 		7A2446D71CA7220E00924A28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A2446D91CA7220E00924A28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A2446E01CA722C400924A28 /* Vocabulary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
-		7A4798BD1CB285D100373314 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		7A4798BD1CB285D100373314 /* Crossword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crossword.swift; sourceTree = "<group>"; };
 		7A9DACA71CA97592006B9FB7 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		7A9DACAA1CA97A9E006B9FB7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,7 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				7A2446E01CA722C400924A28 /* Vocabulary.swift */,
-				7A4798BD1CB285D100373314 /* Game.swift */,
+				7A4798BD1CB285D100373314 /* Crossword.swift */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -161,7 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A9DACA81CA97592006B9FB7 /* MasterViewController.swift in Sources */,
-				7A4798BE1CB285D100373314 /* Game.swift in Sources */,
+				7A4798BE1CB285D100373314 /* Crossword.swift in Sources */,
 				7A9DACAB1CA97A9E006B9FB7 /* DetailViewController.swift in Sources */,
 				7A2446E11CA722C400924A28 /* Vocabulary.swift in Sources */,
 				7A2446CE1CA7220E00924A28 /* AppDelegate.swift in Sources */,

@@ -16,10 +16,6 @@ class Vocabulary: CustomStringConvertible {
                 score of the words)
      */
     var words: [Int:[Word]]?
-    
-    /*
-        The whole algorithm will run on wordSizes (speedup)
-     */
     var wordSizes: [(Int,Int)]?
     init(){
         if words == nil{
@@ -44,10 +40,13 @@ class Vocabulary: CustomStringConvertible {
         }
         return nil
     }
-    func getNextWord(this word:Word) -> Word?{
-        if let next = getNextWordOfTheSameLength(word: word){
+    func getNextWord(word:Word?) -> Word?{
+        guard word != nil else{
+            return getFirst
+        }
+        if let next = getNextWordOfTheSameLength(word: word!){
             return next
-        } else if let nextSizeExist = getNextWordSize(word.word.characters.count){
+        } else if let nextSizeExist = getNextWordSize(word!.word.characters.count){
             return words![nextSizeExist]![0]
         }
         return nil
@@ -72,7 +71,6 @@ class Vocabulary: CustomStringConvertible {
             print("Error: \(URLString) ")
             return
         }
-        
         do {
             let HTMLString = try String(contentsOfURL: myURL)
             let devideOnRows = HTMLString.characters.split{$0 == "\n"}.map(String.init)
@@ -122,6 +120,9 @@ class Vocabulary: CustomStringConvertible {
 class Word: CustomStringConvertible, Comparable {
     let word: String
     let kind: Kind
+    var length: Int {
+        return word.characters.count
+    }
     
     var score: Int{
         var sum = 0
@@ -161,7 +162,6 @@ class Word: CustomStringConvertible, Comparable {
         return "\(word) \(score) \(kind) \n"
     }
 }
-/// the best are at the beggining
 func < (lhs: Word, rhs: Word) -> Bool {
     return lhs.score > rhs.score
 }

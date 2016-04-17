@@ -17,15 +17,16 @@ struct Data{
     static let widthDefault: Int            = 10
     static let numberOfWordsDefault: Int    = 30
     
-    static let navControllerHeight: CGFloat = CGFloat(10)
+//    static let navControllerHeight: CGFloat = CGFloat(10)
 }
 class DetailViewController: UIViewController {
 
     @IBOutlet var gameView: UIView!
     
-    let voc = Vocabulary()
+//    let voc = Vocabulary()
     
-    static let vocabulary = Vocabulary()// add activity ind in time of init
+    let crossword = Crossword()// add activity ind in time of init async
+//                                      because i import data in Voc.. init
     var cells = [UIView]()
     
     var cellSize: CGSize{
@@ -35,8 +36,12 @@ class DetailViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-//        print(voc.words!.description)
- print(voc.wordSizes)
+        let word = Word(word: "road", kind: Kind.ADV)
+        var cross = [CrosswordWord]()
+        cross.append(CrosswordWord(word: Word(word: "ward", kind: Kind.ADV), startPoint: (0,0), orientation: Orientation.Horizontal))
+        cross.append(CrosswordWord(word: Word(word: "word", kind: Kind.ADV), startPoint: (0,0), orientation: Orientation.Vertical))
+        print(crossword.findPlaceForWord(word, crossword: cross))
+
         createCells()
     }
     @IBAction func tapGesture(sender: AnyObject) {
@@ -63,11 +68,10 @@ private extension UIColor{
         case 0: return UIColor.redColor()
         case 1: return UIColor.blueColor()
         case 2: return UIColor.brownColor()
-        case 3: return UIColor.blackColor()
+        case 3: return UIColor.grayColor()
         case 4: return UIColor.greenColor()
         case 5: return UIColor.purpleColor()
-        case 6: return UIColor.yellowColor()
-        default: return UIColor.grayColor()
+        default: return UIColor.yellowColor()
             
         }
     }
