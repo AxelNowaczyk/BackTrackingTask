@@ -13,7 +13,7 @@ enum Orientation {
     case Vertical
 }
 
-class CrosswordWord {
+class CrosswordWord: CustomStringConvertible {
     let word: Word
     let startPoint: (Int, Int)
     let orientation: Orientation
@@ -24,7 +24,10 @@ class CrosswordWord {
         self.orientation = orientation
     }
     func checkConstraints(with cWord: CrosswordWord) -> Bool {
-
+        guard checkIfCanBeNextTo(word: cWord) else {
+            return false
+        }
+        
         for sIndex in 0..<word.length {
             for cIndex in 0..<cWord.word.length{
                 
@@ -65,36 +68,121 @@ class CrosswordWord {
         }
         return true
     }
+    private func checkIfCanBeNextTo(word cWord: CrosswordWord) -> Bool {
+        for sIndex in 0..<word.length {
+            for cIndex in 0..<cWord.word.length{
+                
+                var s_x = startPoint.0
+                var s_y = startPoint.1
+                var c_x = cWord.startPoint.0
+                var c_y = cWord.startPoint.1
+                
+                switch (orientation,cWord.orientation) {
+                case (.Horizontal, .Horizontal):
+                    s_x += sIndex
+                    c_x += cIndex
+                case (.Horizontal, .Vertical):
+                    s_x += sIndex
+                    c_y += cIndex
+                case (.Vertical, .Horizontal):
+                    s_y += sIndex
+                    c_x += cIndex
+                case (.Vertical, .Vertical):
+                    s_y += sIndex
+                    c_y += cIndex
+                }
+                switch orientation {
+                case .Horizontal:
+                    if s_y == c_y && (startPoint.0-1 == c_x ||
+                                    startPoint.0+word.length+1 == c_x) {
+                        return false
+                    }
+                    switch cWord.orientation {
+                    case .Horizontal:
+                        if s_x == c_x && (s_y-1 == c_y || s_y+1 == c_y) {
+                            return false
+                        }
+                    case .Vertical:
+                        if s_x == c_x && (  s_y-1 == cWord.startPoint.1+cWord.word.length ||
+                                            s_y+1 == cWord.startPoint.1) {
+                            return false
+                        }
+                    }
+                case .Vertical:
+                    if s_x == c_x && (startPoint.1-1 == c_y ||
+                                    startPoint.1+word.length+1 == c_y) {
+                        return false
+                    }
+                    switch cWord.orientation {
+                    case .Horizontal:
+                        if s_y == c_y && (  s_x-1 == cWord.startPoint.0+cWord.word.length ||
+                                            s_x+1 == cWord.startPoint.0) {
+                            return false
+                        }
+                    case .Vertical:
+                        if s_y == c_y && (s_x-1 == c_x || s_x+1 == c_x) {
+                            return false
+                        }
+                    }
+                }
+            }
+        }
+        return true
+
+    }
+    var description: String{
+        return "\(word) \(startPoint) \(orientation) \n"
+    }
 }
 
 class Crossword {
-//    let vocabulary = Vocabulary()
+    private let vocabulary = Vocabulary()
+    private var lastWord: Word?
     func start() {
+        lastWord = Word(word: "",kind: Kind.N)
         crossword([CrosswordWord]())
     }
     private func crossword(crossword: [CrosswordWord]?) -> [CrosswordWord]? {
-        guard crossword != nil else {
+        // when there is no results
+        guard let crossword = crossword else {
             return nil
         }
         
-        guard crossword!.count < Data.numberOfWords else {
+        guard crossword.count < Data.numberOfWords else {
+            print(crossword)
             return crossword
         }
-        return self.crossword(getNextState(crossword!))
+        let nextWord = getNextWord()
+        guard let nextWordUW = nextWord else {
+            return nil
+        }
+        
+        let places = findPlacesForWord(nextWordUW, crossword: crossword)
+        guard places.count > 0 else {
+            return self.crossword(crossword)
+        }
+        for place in places {
+            let nextCw = crossword + [CrosswordWord(word: nextWordUW, startPoint: place.1, orientation: place.0)]
+            self.crossword(nextCw)
+        }
+        return nil
     }
-    private func getNextState(crossword: [CrosswordWord]) -> [CrosswordWord]? {
-//        if crossword.count == 0 {
-//            crossword.append(CrosswordWord)
-//            return
-//        }
-//        let lastWord = crossword[crossword.count-1]
-        return crossword
+    private func getNextWord() -> Word? {
+        guard let lastWord = lastWord else{
+            return nil
+        }
+        if lastWord.word == "" {
+            self.lastWord = vocabulary.getFirst
+        } else {
+            self.lastWord = vocabulary.getNextWord(lastWord)
+        }
+        return self.lastWord
     }
     private func findPlacesForWord(word: Word, crossword: [CrosswordWord]) -> [(Orientation,(Int, Int))] {
         
         var places = [(Orientation,(Int, Int))]()
         guard crossword.count > 0 else {
-            return [(Orientation.Horizontal,(0,0))]// add all possibiblities
+            return giveAllPossForFirst(word)
         }
         
         for cword in crossword {
@@ -103,6 +191,20 @@ class Crossword {
         }
         
         return places
+    }
+    private func giveAllPossForFirst(word: Word) -> [(Orientation,(Int, Int))] {
+        var possies = [(Orientation,(Int, Int))]()
+        for x in 0..<Data.width{
+            for y in 0..<Data.height{
+                if Data.width > x + word.length{
+                    possies.append((Orientation.Horizontal,(x,y)))
+                }
+                if Data.height > y + word.length{
+                    possies.append((Orientation.Vertical,(x,y)))
+                }
+            }
+        }
+        return possies
     }
     // find places where the new word can start
     private func findPossibleStarts(word: Word, crosswordWord: CrosswordWord) -> [(Orientation,(Int, Int),Word)]{

@@ -10,8 +10,8 @@ import UIKit
 
 struct Data{
     static var height: Int          = 20
-    static var width: Int           = 10
-    static var numberOfWords: Int   = 30
+    static var width: Int           = 20
+    static var numberOfWords: Int   = 5//30
     
     static let heightDefault: Int           = 20
     static let widthDefault: Int            = 10
@@ -22,8 +22,6 @@ struct Data{
 class DetailViewController: UIViewController {
 
     @IBOutlet var gameView: UIView!
-    
-//    let voc = Vocabulary()
     
     let crossword = Crossword()// add activity ind in time of init async
 //                                      because i import data in Voc.. init
@@ -36,18 +34,7 @@ class DetailViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        let word = Word(word: "road", kind: Kind.ADV)
-        var cross = [CrosswordWord]()
-        cross.append(CrosswordWord(word: Word(word: "ward", kind: Kind.ADV), startPoint: (0,0), orientation: Orientation.Horizontal))
-        cross.append(CrosswordWord(word: Word(word: "word", kind: Kind.ADV), startPoint: (0,0), orientation: Orientation.Vertical))
-        print(crossword.findPlacesForWord(word, crossword: cross))
-
-//        let word = Word(word: "example", kind: Kind.N)
-//        let cww = CrosswordWord(word: word, startPoint: (0,0), orientation: Orientation.Horizontal)
-//        let word2 = Word(word: "example", kind: Kind.N)
-//        let cww2 = CrosswordWord(word: word2, startPoint: (0,0), orientation: Orientation.Vertical)
-//        print(cww.checkConstraints(with: cww2))
-        
+        crossword.start()
         createCells()
     }
     @IBAction func tapGesture(sender: AnyObject) {

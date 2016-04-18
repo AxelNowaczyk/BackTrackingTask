@@ -34,7 +34,8 @@ class Vocabulary: CustomStringConvertible {
             If this word is last return nil
          */
         for i in 0..<(numOfWordsOfTheSameLength-1){
-            if words![wordLength]![i].word == word.word{
+            if words![wordLength]![i].word == word.word &&
+               words![wordLength]![i].kind == word.kind {
                 return words![wordLength]![i+1]
             }
         }
