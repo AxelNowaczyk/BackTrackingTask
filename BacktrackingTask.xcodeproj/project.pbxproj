@@ -15,7 +15,19 @@
 		7A4798BE1CB285D100373314 /* Crossword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4798BD1CB285D100373314 /* Crossword.swift */; };
 		7A9DACA81CA97592006B9FB7 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9DACA71CA97592006B9FB7 /* MasterViewController.swift */; };
 		7A9DACAB1CA97A9E006B9FB7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9DACAA1CA97A9E006B9FB7 /* DetailViewController.swift */; };
+		7AD7513A1CC4EB1D000E98B8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AD751331CC4EA7F000E98B8 /* Info.plist */; };
+		7AD7513D1CC4F003000E98B8 /* BacktrackingTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD751311CC4EA7F000E98B8 /* BacktrackingTaskTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7AD751341CC4EA7F000E98B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A2446C21CA7220E00924A28 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A2446C91CA7220E00924A28;
+			remoteInfo = BacktrackingTask;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		7A2446CA1CA7220E00924A28 /* BacktrackingTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BacktrackingTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -28,10 +40,20 @@
 		7A4798BD1CB285D100373314 /* Crossword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crossword.swift; sourceTree = "<group>"; };
 		7A9DACA71CA97592006B9FB7 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		7A9DACAA1CA97A9E006B9FB7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		7AD7512F1CC4EA7F000E98B8 /* BacktrackingTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BacktrackingTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AD751311CC4EA7F000E98B8 /* BacktrackingTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BacktrackingTaskTests.swift; sourceTree = "<group>"; };
+		7AD751331CC4EA7F000E98B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		7A2446C71CA7220E00924A28 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AD7512C1CC4EA7F000E98B8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -45,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				7A2446CC1CA7220E00924A28 /* BacktrackingTask */,
+				7AD751301CC4EA7F000E98B8 /* BacktrackingTaskTests */,
 				7A2446CB1CA7220E00924A28 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				7A2446CA1CA7220E00924A28 /* BacktrackingTask.app */,
+				7AD7512F1CC4EA7F000E98B8 /* BacktrackingTaskTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,6 +113,15 @@
 			name = classes;
 			sourceTree = "<group>";
 		};
+		7AD751301CC4EA7F000E98B8 /* BacktrackingTaskTests */ = {
+			isa = PBXGroup;
+			children = (
+				7AD751311CC4EA7F000E98B8 /* BacktrackingTaskTests.swift */,
+				7AD751331CC4EA7F000E98B8 /* Info.plist */,
+			);
+			path = BacktrackingTaskTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,6 +142,24 @@
 			productReference = 7A2446CA1CA7220E00924A28 /* BacktrackingTask.app */;
 			productType = "com.apple.product-type.application";
 		};
+		7AD7512E1CC4EA7F000E98B8 /* BacktrackingTaskTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7AD751361CC4EA7F000E98B8 /* Build configuration list for PBXNativeTarget "BacktrackingTaskTests" */;
+			buildPhases = (
+				7AD7512B1CC4EA7F000E98B8 /* Sources */,
+				7AD7512C1CC4EA7F000E98B8 /* Frameworks */,
+				7AD7512D1CC4EA7F000E98B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7AD751351CC4EA7F000E98B8 /* PBXTargetDependency */,
+			);
+			name = BacktrackingTaskTests;
+			productName = BacktrackingTaskTests;
+			productReference = 7AD7512F1CC4EA7F000E98B8 /* BacktrackingTaskTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -121,6 +172,10 @@
 				TargetAttributes = {
 					7A2446C91CA7220E00924A28 = {
 						CreatedOnToolsVersion = 7.3;
+					};
+					7AD7512E1CC4EA7F000E98B8 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 7A2446C91CA7220E00924A28;
 					};
 				};
 			};
@@ -138,6 +193,7 @@
 			projectRoot = "";
 			targets = (
 				7A2446C91CA7220E00924A28 /* BacktrackingTask */,
+				7AD7512E1CC4EA7F000E98B8 /* BacktrackingTaskTests */,
 			);
 		};
 /* End PBXProject section */
@@ -147,9 +203,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AD7513A1CC4EB1D000E98B8 /* Info.plist in Resources */,
 				7A2446D81CA7220E00924A28 /* LaunchScreen.storyboard in Resources */,
 				7A2446D51CA7220E00924A28 /* Assets.xcassets in Resources */,
 				7A2446D31CA7220E00924A28 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AD7512D1CC4EA7F000E98B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +232,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7AD7512B1CC4EA7F000E98B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AD7513D1CC4F003000E98B8 /* BacktrackingTaskTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7AD751351CC4EA7F000E98B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A2446C91CA7220E00924A28 /* BacktrackingTask */;
+			targetProxy = 7AD751341CC4EA7F000E98B8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7A2446D11CA7220E00924A28 /* Main.storyboard */ = {
@@ -281,6 +361,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.axlpl.BacktrackingTask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
@@ -292,6 +373,31 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.axlpl.BacktrackingTask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		7AD751371CC4EA7F000E98B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = BacktrackingTaskTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.axlpl.BacktrackingTaskTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BacktrackingTask.app/BacktrackingTask";
+			};
+			name = Debug;
+		};
+		7AD751381CC4EA7F000E98B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = BacktrackingTaskTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.axlpl.BacktrackingTaskTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BacktrackingTask.app/BacktrackingTask";
 			};
 			name = Release;
 		};
@@ -315,6 +421,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		7AD751361CC4EA7F000E98B8 /* Build configuration list for PBXNativeTarget "BacktrackingTaskTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7AD751371CC4EA7F000E98B8 /* Debug */,
+				7AD751381CC4EA7F000E98B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

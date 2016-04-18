@@ -23,46 +23,44 @@ class CrosswordWord {
         self.startPoint = startPoint
         self.orientation = orientation
     }
-    func checkIfCollisionOcc(with cWord: CrosswordWord) -> Bool {
-
-        guard cWord.orientation != orientation else {
-            return false
-        }
+    func checkConstraints(with cWord: CrosswordWord) -> Bool {
 
         for sIndex in 0..<word.length {
             for cIndex in 0..<cWord.word.length{
-                switch orientation {
-                case .Horizontal:
-                    let s_x = startPoint.0 + sIndex
-                    let s_y = startPoint.1
-                    let c_x = cWord.startPoint.0
-                    let c_y = cWord.startPoint.1 + cIndex
-                    
-                    if s_x == c_x && s_y == c_y {
-                        if  word.word[word.word.startIndex.advancedBy(sIndex)] ==
-                        cWord.word.word[cWord.word.word.startIndex.advancedBy(cIndex)] {
-                            return true
-                        } else {
-                            return false
-                        }
-                    }
-
-                case .Vertical:
-                    let s_x = startPoint.0
-                    let s_y = startPoint.1 + sIndex
-                    let c_x = cWord.startPoint.0 + cIndex
-                    let c_y = cWord.startPoint.1
-                    
-                    if s_x == c_x && s_y == c_y {
-                        if  word.word[word.word.startIndex.advancedBy(sIndex)] ==
-                            cWord.word.word[cWord.word.word.startIndex.advancedBy(cIndex)] {
-                            return true
-                        } else {
-                            return false
-                        }
-                    }
-
+                
+                var s_x = startPoint.0
+                var s_y = startPoint.1
+                var c_x = cWord.startPoint.0
+                var c_y = cWord.startPoint.1
+                
+                switch (orientation,cWord.orientation) {
+                case (.Horizontal, .Horizontal):
+                    s_x += sIndex
+                    c_x += cIndex
+                case (.Horizontal, .Vertical):
+                    s_x += sIndex
+                    c_y += cIndex
+                case (.Vertical, .Horizontal):
+                    s_y += sIndex
+                    c_x += cIndex
+                case (.Vertical, .Vertical):
+                    s_y += sIndex
+                    c_y += cIndex
                 }
+                    
+                guard s_x == c_x && s_y == c_y else {
+                    continue
+                }
+                
+                guard cWord.orientation != orientation else {
+                    return false
+                }
+                    
+                guard word.word[word.word.startIndex.advancedBy(sIndex)] ==
+                    cWord.word.word[cWord.word.word.startIndex.advancedBy(cIndex)] else {
+                        return false
+                }
+                return true
             }
         }
         return true
@@ -92,25 +90,22 @@ class Crossword {
 //        let lastWord = crossword[crossword.count-1]
         return crossword
     }
-    func findPlaceForWord(word: Word, crossword: [CrosswordWord]) -> (Orientation,(Int, Int))? {
+    private func findPlacesForWord(word: Word, crossword: [CrosswordWord]) -> [(Orientation,(Int, Int))] {
         
+        var places = [(Orientation,(Int, Int))]()
         guard crossword.count > 0 else {
-            return (Orientation.Horizontal,(0,0))
+            return [(Orientation.Horizontal,(0,0))]// add all possibiblities
         }
         
         for cword in crossword {
             let possibilities = findPossibleStarts(word, crosswordWord: cword)
-            let place = givePlace(possibilities,crossword: crossword)
-            
-            if place != nil {
-                return place
-            }
+            places += givePlaces(possibilities,crossword: crossword)
         }
         
-        return nil
+        return places
     }
     // find places where the new word can start
-    func findPossibleStarts(word: Word, crosswordWord: CrosswordWord) -> [(Orientation,(Int, Int),Word)]{
+    private func findPossibleStarts(word: Word, crosswordWord: CrosswordWord) -> [(Orientation,(Int, Int),Word)]{
         var possibleStarts = [(Orientation,(Int, Int),Word)]()
         let word1 = word.word
         let word2 = crosswordWord.word.word
@@ -133,13 +128,14 @@ class Crossword {
         }
         return possibleStarts
     }
-    private func givePlace(possibilities: [(Orientation,(Int, Int),Word)], crossword: [CrosswordWord]) -> (Orientation,(Int, Int))? {
+    private func givePlaces(possibilities: [(Orientation,(Int, Int),Word)], crossword: [CrosswordWord]) -> [(Orientation,(Int, Int))] {
+        var places = [(Orientation,(Int, Int))]()
         for poss in possibilities {
             if checkIfInBoard(poss) == true && checkIfNoCollisions(poss,crossword: crossword) == true {
-                return (poss.0, poss.1)
+                places.append((poss.0, poss.1))
             }
         }
-        return nil
+        return places
     }
     /*
         this 2 methods below checks if it possible to put this point on the board
@@ -162,7 +158,7 @@ class Crossword {
     private func checkIfNoCollisions(possibility: (Orientation,(Int, Int), Word), crossword: [CrosswordWord]) -> Bool{
         let possWord = CrosswordWord(word: possibility.2, startPoint: possibility.1, orientation: possibility.0)
         for cword in crossword {
-            if cword.checkIfCollisionOcc(with: possWord) == false {
+            guard cword.checkConstraints(with: possWord) else {
                 return false
             }
         }

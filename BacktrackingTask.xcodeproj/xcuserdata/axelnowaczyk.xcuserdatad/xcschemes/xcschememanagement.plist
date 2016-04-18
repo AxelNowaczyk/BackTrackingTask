@@ -9,10 +9,20 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>BacktrackingTaskTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>7A2446C91CA7220E00924A28</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7AD7512E1CC4EA7F000E98B8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

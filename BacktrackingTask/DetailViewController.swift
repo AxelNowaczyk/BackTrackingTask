@@ -40,8 +40,14 @@ class DetailViewController: UIViewController {
         var cross = [CrosswordWord]()
         cross.append(CrosswordWord(word: Word(word: "ward", kind: Kind.ADV), startPoint: (0,0), orientation: Orientation.Horizontal))
         cross.append(CrosswordWord(word: Word(word: "word", kind: Kind.ADV), startPoint: (0,0), orientation: Orientation.Vertical))
-        print(crossword.findPlaceForWord(word, crossword: cross))
+        print(crossword.findPlacesForWord(word, crossword: cross))
 
+//        let word = Word(word: "example", kind: Kind.N)
+//        let cww = CrosswordWord(word: word, startPoint: (0,0), orientation: Orientation.Horizontal)
+//        let word2 = Word(word: "example", kind: Kind.N)
+//        let cww2 = CrosswordWord(word: word2, startPoint: (0,0), orientation: Orientation.Vertical)
+//        print(cww.checkConstraints(with: cww2))
+        
         createCells()
     }
     @IBAction func tapGesture(sender: AnyObject) {
